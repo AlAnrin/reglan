@@ -6,16 +6,16 @@ import {Subject} from "rxjs";
   providedIn: 'root',
 })
 export class CountingService {
-  oneWidth: number = 2.5;
-  oneHeight: number = 3.5;
-  circle: number = 58;
+  oneWidth: number = 0;
+  oneHeight: number = 0;
+  circle: number = 0;
   reglanCount: 1 | 2 | 3 = 2;
-  deepeningBack: number = 4;
-  deepeningFront: number = 10;
-  armholeDepth: number = 24;
-  shoulderLength: number = 10;
-  armCircle: number = 30
-  bust: number = 95;
+  deepeningBack: number = 0;
+  deepeningFront: number = 0;
+  armholeDepth: number = 0;
+  shoulderLength: number = 0;
+  armCircle: number = 0;
+  bust: number = 0;
 
   isCounting = false;
   counting: {
@@ -44,9 +44,9 @@ export class CountingService {
     countSleeve: 0
   };
 
-  currentCountBust = 146;
-  currentCountSleeve = 48;
-  currentReglanLength = 15;
+  currentCountBust = 0;
+  currentCountSleeve = 0;
+  currentReglanLength = 0;
 
   reglanArrayBody: string[] = [];
   reglanArrayArm: string[] = [];
@@ -110,14 +110,14 @@ export class CountingService {
     }
     const countReglan = Math.floor(this.counting.reglanLengthRanks - this.currentReglanLength);
 
-    const armNotAdd = countReglan - countAddingArm / 2;
-    const armCoof = Math.floor(armNotAdd / (countAddingBody / 2) + 1);
+    let armNotAdd = countReglan - countAddingArm / 2;
+    const armCoof = Math.floor(armNotAdd / (countAddingArm / 2) + 1);
     let armRem = 0;
     while (Math.floor((armNotAdd - armRem) / armCoof) !== Math.floor(countAddingArm / 2 - armRem)) {
       armRem += 1;
 
       if (armRem >= countAddingArm) {
-        this.snack.open('Ошибка при попытке расчитать прибавки на рукав!');
+        this.snack.open('Ошибка при попытке расчитать прибавки на рукав!', undefined, {duration: 5000});
         return;
       }
     }
@@ -145,14 +145,14 @@ export class CountingService {
       iterationRem = iterationRem + armCoof + 1;
     }
 
-    const bodyNotAdd = countReglan - countAddingBody / 2;
+    let bodyNotAdd = countReglan - countAddingBody / 2;
     const bodyCoof = Math.floor(bodyNotAdd / (countAddingBody / 2) + 1);
     let bodyRem = 0;
     while (Math.floor((bodyNotAdd - bodyRem) / bodyCoof) !== Math.floor(countAddingBody / 2 - bodyRem)) {
       bodyRem += 1;
 
       if (bodyRem >= countAddingBody) {
-        this.snack.open('Ошибка при попытке расчитать прибавки на тело!');
+        this.snack.open('Ошибка при попытке расчитать прибавки на тело!', undefined, {duration: 5000});
         return;
       }
     }

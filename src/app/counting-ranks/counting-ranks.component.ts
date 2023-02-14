@@ -19,7 +19,7 @@ export class CountingRanksComponent implements OnDestroy {
         this.reglan = [];
       }
       else {
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < this.countingService.reglanArrayArm.length; i++) {
           this.reglan[i] = {
             name: `Ряд ${i + 1}. ${this.countingService.reglanArrayArm[i]} |  ${this.countingService.reglanArrayBody[i]}`,
             checked: false
