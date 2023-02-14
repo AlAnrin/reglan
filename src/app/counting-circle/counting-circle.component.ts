@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {CountingService} from "../services/counting.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-counting-circle',
@@ -7,7 +8,10 @@ import {CountingService} from "../services/counting.service";
   styleUrls: ['./counting-circle.component.scss']
 })
 export class CountingCircleComponent {
-  constructor(public countingService: CountingService) {
+  constructor(public countingService: CountingService, private router: Router) {
   }
 
+  navigateToRanks(): void {
+    this.router.navigate(['ranks']);
+  }
 }

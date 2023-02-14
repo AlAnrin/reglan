@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule, Routes} from "@angular/router";
+import {MatDividerModule} from "@angular/material/divider";
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     FormsModule,
     MatAutocompleteModule,
     MatButtonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatDividerModule
   ]
 })
 export class CountingCircleModule { }

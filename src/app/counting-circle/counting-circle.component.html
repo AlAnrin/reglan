@@ -112,17 +112,25 @@
     <div class="one_column one_column_reglan_right_down">{{countingService.counting.reglan}}</div>
   </div>
 
-  <div class="column">
-    <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLength}} см</mat-label>
-    <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLength * countingService.oneHeight}} рядов</mat-label>
+  <div class="margin-20">
+    <div class="column">
+      <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLength}} см</mat-label>
+      <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLength * countingService.oneHeight}} рядов</mat-label>
+      <br>
+      <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut}} см</mat-label>
+      <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut * countingService.oneWidth}} петель</mat-label>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-label><b>Конечное количество петель всего:</b> {{countingService.counting.allCountEnd}}</mat-label>
+      <br>
+      <mat-label><b>Петли тела:</b> {{countingService.counting.countBust}}</mat-label>
+      <mat-label><b>Петли рукава (одного):</b> {{countingService.counting.countSleeve}}</mat-label>
+    </div>
   </div>
-  <div class="column">
-    <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut}} см</mat-label>
-    <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut * countingService.oneWidth}} петель</mat-label>
-  </div>
-  <div class="column">
-    <mat-label><b>Конечное количество петель всего:</b> {{countingService.counting.allCountEnd}}</mat-label>
-    <mat-label><b>Петли тела:</b> {{countingService.counting.countBust}}</mat-label>
-    <mat-label><b>Петли рукава (одного):</b> {{countingService.counting.countSleeve}}</mat-label>
-  </div>
+</div>
+
+<div class="header result" *ngIf="countingService.isCounting">
+  <button mat-raised-button color="primary"
+          (click)="navigateToRanks()">Составить схему оставшихся рядов</button>
 </div>
