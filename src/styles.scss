@@ -12,14 +12,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .result {
   margin-bottom: 10px;
 }
+.strocked {
+  text-decoration: line-through;
+  background: #afaeae !important;
+}
+.pointer {
+  width: 100%;
+}
+.overflow {
+  column-count: 3;
+  column-gap: 10px;
+}
 
+.spacer {
+  flex: 1;
+}
 .row {
   display: flex;
   flex-direction: row;
   margin: 10px;
 }
-.margin-20 {
-  margin: 20px;
+.margin {
+  &-20 {
+    margin: 20px;
+  }
+  &-15 {
+    margin: 15px;
+  }
 }
 .column {
   display: flex;

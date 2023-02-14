@@ -1,1 +1,68 @@
-<p>counting-ranks works!</p>
+<div class="row">
+  <mat-label class="header">Текущие значения</mat-label>
+
+  <div class="spacer"></div>
+  <div class="header result">
+    <button mat-button color="primary"
+            (click)="navigateToCircle()">Назад</button>
+  </div>
+</div>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Петли тела (перед и спинка)</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.currentCountBust">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Петли рукава (одного)</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.currentCountSleeve">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Длина регланной линии (ряды)</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.currentReglanLength">
+  </mat-form-field>
+</div>
+
+<mat-label class="header">Конечные значения</mat-label>
+
+<div class="margin-15" *ngIf="countingService.counting.front">
+  <div class="column">
+    <mat-label><b>Петли тела:</b> {{countingService.counting.countBust}}</mat-label>
+    <mat-label><b>Петли рукава (одного):</b> {{countingService.counting.countSleeve}}</mat-label>
+    <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLengthRanks}} рядов</mat-label>
+  </div>
+</div>
+<div class="row" *ngIf="!countingService.counting.front">
+  <mat-form-field>
+    <mat-label>Петли тела (перед и спинка)</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.counting.countBust">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Петли рукава (одного)</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.counting.countSleeve">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Длина регланной линии (ряды)</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.counting.reglanLengthRanks">
+  </mat-form-field>
+</div>
+
+<div class="header result">
+  <button mat-raised-button color="primary"
+          (click)="countingService.countRanks()">Расчитать ряды</button>
+</div>
+
+<div class="overflow">
+  <ng-container *ngFor="let item of reglan">
+    <button mat-button [ngClass]="{'strocked': item.checked}"
+               class="pointer"
+               (click)="item.checked = !item.checked">
+      {{item.name}}
+    </button>
+    <mat-divider></mat-divider>
+  </ng-container>
+</div>
