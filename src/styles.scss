@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.header {
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 15px;
+}
+
+.result {
+  margin-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.one_column {
+  width: calc(100% / 3);
+  margin: 10px;
+
+  &_reglan {
+    &_left {
+      &_down {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        border-top: 1px solid gray;
+        border-right: 1px solid gray;
+      }
+      &_top {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        border-bottom: 1px solid gray;
+        border-right: 1px solid gray;
+      }
+    }
+    &_right {
+      &_down {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        border-top: 1px solid gray;
+        border-left: 1px solid gray;
+      }
+      &_top {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        border-bottom: 1px solid gray;
+        border-left: 1px solid gray;
+      }
+    }
+  }
+}

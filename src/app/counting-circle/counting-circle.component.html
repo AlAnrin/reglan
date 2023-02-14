@@ -1,0 +1,128 @@
+<mat-label class="header">Плотность вязания</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Количество петель в 1 см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.oneWidth">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Количество рядов в 1 см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.oneHeight">
+  </mat-form-field>
+</div>
+
+<mat-label class="header">Расчет набора петель</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Обхват горловины, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.circle">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Углубление по спине, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.deepeningBack">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Углубление по переду, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.deepeningFront">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Количество петель реглана</mat-label>
+    <input type="text"
+           matInput
+           [(ngModel)]="countingService.reglanCount"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option [value]="1">1</mat-option>
+      <mat-option [value]="2">2</mat-option>
+      <mat-option [value]="3">3</mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+
+<mat-label class="header">Расчет глубины реглана</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Длина плеча, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.shoulderLength">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Глубина проймы, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.armholeDepth">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Обхват груди, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.bust">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Обхват руки, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.armCircle">
+  </mat-form-field>
+</div>
+
+<div class="header result">
+  <button mat-raised-button color="primary"
+          (click)="countingService.countTypesettingEdge()">Расчитать</button>
+</div>
+
+<mat-label class="header">Результат расчетов</mat-label>
+
+<div *ngIf="countingService.isCounting">
+  <div class="row">
+    <div class="one_column one_column_reglan_left_top">{{countingService.counting.reglan}}</div>
+    <div class="one_column">
+      <div class="column">
+        <mat-label><b>Перед</b></mat-label>
+        <mat-label>{{countingService.counting.front}} петель</mat-label>
+
+        <mat-label><b>Количество рядов углубления:</b> {{countingService.counting.countDownFront}}</mat-label>
+      </div>
+    </div>
+    <div class="one_column one_column_reglan_right_top">{{countingService.counting.reglan}}</div>
+  </div>
+  <div class="row">
+    <div class="one_column">
+      <div class="column">
+        <mat-label><b>Левый рукав</b></mat-label>
+        <mat-label>{{countingService.counting.sleeve}} петель</mat-label>
+      </div>
+    </div>
+    <div class="one_column"></div>
+    <div class="one_column">
+      <div class="column">
+        <mat-label><b>Правый рукав</b></mat-label>
+        <mat-label>{{countingService.counting.sleeve}} петель</mat-label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="one_column one_column_reglan_left_down">{{countingService.counting.reglan}}</div>
+    <div class="one_column">
+      <div class="column">
+        <mat-label><b>Спинка</b></mat-label>
+        <mat-label>{{countingService.counting.front}} петель</mat-label>
+
+        <mat-label><b>Количество рядов углубления:</b> {{countingService.counting.countDownBack}}</mat-label>
+      </div>
+    </div>
+    <div class="one_column one_column_reglan_right_down">{{countingService.counting.reglan}}</div>
+  </div>
+
+  <div class="column">
+    <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLength}} см</mat-label>
+    <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLength * countingService.oneHeight}} рядов</mat-label>
+  </div>
+  <div class="column">
+    <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut}} см</mat-label>
+    <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut * countingService.oneWidth}} петель</mat-label>
+  </div>
+  <div class="column">
+    <mat-label><b>Конечное количество петель всего:</b> {{countingService.counting.allCountEnd}}</mat-label>
+    <mat-label><b>Петли тела:</b> {{countingService.counting.countBust}}</mat-label>
+    <mat-label><b>Петли рукава (одного):</b> {{countingService.counting.countSleeve}}</mat-label>
+  </div>
+</div>
