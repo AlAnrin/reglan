@@ -8,6 +8,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule, Routes} from "@angular/router";
 import {MatDividerModule} from "@angular/material/divider";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   {
@@ -21,15 +22,16 @@ const routes: Routes = [
   declarations: [
     CountingCircleComponent,
   ],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    RouterModule.forChild(routes),
-    MatDividerModule
-  ]
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        RouterModule.forChild(routes),
+        MatDividerModule,
+        MatSelectModule
+    ]
 })
 export class CountingCircleModule { }

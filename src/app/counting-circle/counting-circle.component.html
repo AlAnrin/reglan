@@ -9,6 +9,15 @@
     <mat-label>Количество рядов в 1 см</mat-label>
     <input matInput type="number" [(ngModel)]="countingService.oneHeight">
   </mat-form-field>
+  <mat-form-field style="width: 45vw">
+    <mat-label>Тип реглана</mat-label>
+    <mat-select [(ngModel)]="countingService.reglanType">
+      <mat-option [value]="3">На три части</mat-option>
+      <mat-option [value]="8">На восемь частей</mat-option>
+      <mat-option [value]="9">На девять частей</mat-option>
+    </mat-select>
+    <mat-hint>{{countingService.reglanType === 9 ? 'При расчете данного реглана коррекция на росток уже включена' : ''}}</mat-hint>
+  </mat-form-field>
 </div>
 
 <mat-label class="header">Расчет набора петель</mat-label>
@@ -104,7 +113,7 @@
     <div class="one_column">
       <div class="column">
         <mat-label><b>Спинка</b></mat-label>
-        <mat-label>{{countingService.counting.front}} петель</mat-label>
+        <mat-label>{{countingService.counting.back}} петель</mat-label>
 
         <mat-label><b>Количество рядов углубления:</b> {{countingService.counting.countDownBack}}</mat-label>
       </div>
@@ -118,7 +127,7 @@
       <mat-label><b>Длина регланной линии:</b> {{countingService.counting.reglanLengthRanks}} рядов</mat-label>
       <br>
       <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut}} см</mat-label>
-      <mat-label><b>Длина подреза:</b> {{countingService.counting.undercut * countingService.oneWidth}} петель</mat-label>
+      <mat-label><b>Длина подреза:</b> {{(countingService.counting.undercut * countingService.oneWidth).toFixed(3)}} петель</mat-label>
       <br>
       <mat-divider></mat-divider>
       <br>

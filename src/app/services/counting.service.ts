@@ -8,6 +8,7 @@ import {Subject} from "rxjs";
 export class CountingService {
   oneWidth: number = 0;
   oneHeight: number = 0;
+  reglanType: 3 | 8 | 9 = 9;
   circle: number = 0;
   reglanCount: 1 | 2 | 3 = 2;
   deepeningBack: number = 0;
@@ -20,6 +21,7 @@ export class CountingService {
   isCounting = false;
   counting: {
     front: number,
+    back: number,
     sleeve: number,
     reglan: number,
     countDownFront: number,
@@ -32,6 +34,7 @@ export class CountingService {
     countSleeve: number,
   } = {
     front: 0,
+    back: 0,
     reglan: 0,
     sleeve: 0,
     countDownBack: 0,
@@ -64,19 +67,40 @@ export class CountingService {
 
     allCount = allCount - this.reglanCount * 4;
 
-    let sleeve = Math.round(allCount / 6) - this.reglanCount;
-    if (Math.floor(sleeve % 2) !== 0) {
-      sleeve -= 1;
+    let sleeve = 0;
+    let front = 0;
+    let back = 0;
+
+    switch (this.reglanType) {
+      case 3:
+        front = +(allCount / 3).toFixed(3);
+        back = +(allCount / 3).toFixed(3);
+        sleeve = +(allCount / 6).toFixed(3);
+        break;
+      case 8:
+        front = +((3 * allCount) / 8).toFixed(3);
+        back = +((3 * allCount) / 8).toFixed(3);
+        sleeve = +(allCount / 8).toFixed(3);
+        break;
+      case 9:
+        front = +((4 * allCount) / 9).toFixed(3);
+        back = +((3 * allCount) / 9).toFixed(3);
+        sleeve = +(allCount / 9).toFixed(3);
     }
 
-    let frontandback = allCount - 2 * sleeve;
-    let front = Math.round(frontandback / 2);
+    // let sleeve = Math.round(allCount / 6) - this.reglanCount;
+    // if (Math.floor(sleeve % 2) !== 0) {
+    //   sleeve -= 1;
+    // }
+
+    // let frontandback = allCount - 2 * sleeve;
+    // let front = Math.round(frontandback / 2);
 
     const cat1 = this.armholeDepth - this.circle / 6;
     let reglanLength = Math.pow(cat1, 2) + Math.pow(this.shoulderLength, 2);
     reglanLength = Math.round(Math.sqrt(reglanLength));
 
-    const undercut = Math.round(this.armCircle / 4);
+    const undercut = +(this.armCircle / 4).toFixed(3);
 
     const countBust = this.bust * this.oneWidth - 2 * undercut;
     const countSleeve = this.armCircle * this.oneWidth - undercut;
@@ -84,6 +108,7 @@ export class CountingService {
 
     this.counting = {
       front,
+      back,
       sleeve,
       reglan: this.reglanCount,
       countDownFront: Math.round(this.deepeningFront * this.oneHeight),
