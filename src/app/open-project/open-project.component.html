@@ -1,0 +1,56 @@
+<div class="row">
+  <mat-label class="header">Сохраненные проекты</mat-label>
+
+  <div class="spacer"></div>
+  <div class="header result">
+    <button mat-button color="primary"
+            (click)="navigateToRanks()">Назад</button>
+  </div>
+</div>
+<div class="row">
+  <mat-form-field class="width-100">
+    <mat-label>Выберите проект</mat-label>
+    <input type="text"
+           matInput
+           [(ngModel)]="selectedProject"
+           (ngModelChange)="selectProject($event)"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let proj of savedProjects" [value]="proj">{{proj}}</mat-option>
+    </mat-autocomplete>
+    <mat-icon *ngIf="selectedProject" matSuffix
+              matTooltip="Удалить сохраненный расчет"
+              (click)="delete()">delete</mat-icon>
+  </mat-form-field>
+</div>
+<div class="row">
+  <input type="file" class="file-input"
+         (change)="readFile($event)" #fileUpload>
+  <button mat-button color="primary" class="upload-btn"
+          (click)="fileUpload.click()">
+    Загрузить ряды из файла <mat-icon>attach_file</mat-icon>
+  </button>
+  <div class="spacer"></div>
+  <button mat-raised-button color="warn"
+          class="ml-5"
+          *ngIf="file"
+          (click)="saveRanks()">Сохранить в локальное хранилище</button>
+</div>
+
+<div class="header result">
+<button mat-raised-button color="primary"
+        class="ml-5"
+        *ngIf="selectedProject"
+        (click)="save()">Сохранить изменения</button>
+</div>
+
+<div class="overflow">
+  <ng-container *ngFor="let item of reglan">
+    <button mat-button [ngClass]="{'strocked': item.checked}"
+            class="pointer"
+            (click)="item.checked = !item.checked">
+      {{item.name}}
+    </button>
+    <mat-divider></mat-divider>
+  </ng-container>
+</div>

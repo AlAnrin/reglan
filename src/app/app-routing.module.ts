@@ -12,6 +12,16 @@ const routes: Routes = [
     loadChildren: () => import('./counting-ranks/counting-ranks.module')
       .then(m => m.CountingRanksModule),
   },
+  {
+    path: 'set-in',
+    loadChildren: () => import('./counting-set-in-sleeve/counting-set-in-sleeve.module')
+      .then(m => m.CountingSetInSleeveModule),
+  },
+  {
+    path: 'projects',
+    loadChildren: () => import('./open-project/open-project.module')
+      .then(m => m.OpenProjectModule),
+  },
 ];
 
 @NgModule({

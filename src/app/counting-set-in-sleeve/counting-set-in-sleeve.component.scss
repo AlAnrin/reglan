@@ -1,0 +1,19 @@
+.column {
+  display: flex;
+  align-items: center;
+  &_10 {
+    width: 10%;
+  }
+  &_20 {
+    width: 20%;
+  }
+  &_30 {
+    width: 30%;
+  }
+  &_50 {
+    width: 50%;
+  }
+  &_70 {
+    width: 70%;
+  }
+}

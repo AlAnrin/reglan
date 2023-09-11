@@ -54,6 +54,14 @@
 <div class="header result">
   <button mat-raised-button color="primary"
           (click)="countingService.countRanks()">Расчитать ряды</button>
+  <button mat-raised-button color="accent"
+          class="ml-5"
+          *ngIf="reglan.length"
+          (click)="downloadRanks()">Скачать ряды в .txt</button>
+  <button mat-raised-button color="warn"
+          class="ml-5"
+          *ngIf="reglan.length"
+          (click)="saveRanks()">Сохранить в локальное хранилище</button>
 </div>
 
 <div class="overflow">

@@ -40,16 +40,16 @@ export class CountingService {
     countDownBack: 0,
     countDownFront: 0,
     reglanLength: 0,
-    reglanLengthRanks: 0,
+    reglanLengthRanks: 100,
     undercut: 0,
     allCountEnd: 0,
-    countBust: 0,
-    countSleeve: 0
+    countBust: 330,
+    countSleeve: 117
   };
 
-  currentCountBust = 0;
-  currentCountSleeve = 0;
-  currentReglanLength = 0;
+  currentCountBust = 218;
+  currentCountSleeve = 49;
+  currentReglanLength = 31;
 
   reglanArrayBody: string[] = [];
   reglanArrayArm: string[] = [];

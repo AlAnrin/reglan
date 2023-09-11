@@ -1,0 +1,138 @@
+<mat-label class="header">Плотность вязания</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Количество петель в 1 см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.oneWidth">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Количество рядов в 1 см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.oneHeight">
+  </mat-form-field>
+</div>
+
+<mat-label class="header">Расчет</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Полуобхват бедер, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.hip">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Полуобхват груди, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.chest">
+  </mat-form-field>
+</div>
+<div class="row">
+  <mat-form-field>
+    <mat-label>Высота от низа до проймы, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.height">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Высота от проймы до плеча, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.arm">
+  </mat-form-field>
+</div>
+<div class="row">
+  <mat-form-field>
+    <mat-label>Длина плеча, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.shoulder">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Высота скоса плеча, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.shoulderHeight">
+  </mat-form-field>
+</div>
+<div class="row">
+  <mat-form-field>
+    <mat-label>Ширина горловины, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.neck">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Высота горловины, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.neckHeight">
+  </mat-form-field>
+</div>
+
+
+<div class="header result">
+  <button mat-raised-button color="primary"
+          (click)="countingService.count()">Расчитать</button>
+</div>
+
+<mat-label class="header">Результат расчетов</mat-label>
+
+<ng-container *ngIf="countingService.counting.height">
+  <div class="row">
+    <div class="column column_30"></div>
+    <div class="column column_20">
+      <mat-label><b>Плечо</b></mat-label>
+      <mat-label>{{countingService.counting.shoulder}} петель</mat-label>
+    </div>
+    <div class="column column_30">
+      <mat-label><b>Горловина</b></mat-label>
+      <mat-label>{{countingService.counting.neck}} петель</mat-label>
+    </div>
+    <div class="column column_20">
+      <mat-label><b>Плечо</b></mat-label>
+      <mat-label>{{countingService.counting.shoulder}} петель</mat-label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column column_30">
+      <mat-label><b>Скос плеча</b></mat-label>
+      <mat-label>{{countingService.counting.shoulderHeight}} рядов</mat-label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column column_30">
+      <mat-label><b>Рукав</b></mat-label>
+      <mat-label>{{countingService.counting.arm}} рядов</mat-label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column column_30"></div>
+    <div class="column column_10">
+      <mat-label><b>Подрез + скос</b></mat-label>
+      <mat-label>{{countingService.counting.hem}} петель</mat-label>
+    </div>
+    <div class="column column_50">
+      <mat-label><b>Грудь</b></mat-label>
+      <mat-label>{{countingService.counting.chest}} петель</mat-label>
+    </div>
+    <div class="column column_10">
+      <mat-label><b>Подрез + скос</b></mat-label>
+      <mat-label>{{countingService.counting.hem}} петель</mat-label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column column_30">
+      <mat-label><b>Высота</b></mat-label>
+      <mat-label>{{countingService.counting.height}} рядов</mat-label>
+    </div>
+    <ng-container *ngIf="countingService.counting.chest !== countingService.counting.hip">
+      <div class="column column_10">
+        <mat-label><b>скос</b></mat-label>
+        <mat-label>{{((countingService.counting.hip - countingService.counting.chest) / 2).toFixed(2)}} петель</mat-label>
+      </div>
+      <div class="column column_50">
+      </div>
+      <div class="column column_10">
+        <mat-label><b>скос</b></mat-label>
+        <mat-label>{{((countingService.counting.hip - countingService.counting.chest) / 2).toFixed(2)}} петель</mat-label>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="row">
+    <div class="column column_30"></div>
+    <div class="column column_70">
+      <mat-label><b>Бедра</b></mat-label>
+      <mat-label>{{countingService.counting.hip}} петель</mat-label>
+    </div>
+  </div>
+</ng-container>
