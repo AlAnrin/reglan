@@ -1,17 +1,22 @@
 <mat-toolbar color="primary">
   <span>Расчет вязания</span>
   <span class="spacer"></span>
-  <button mat-button [routerLink]="'/circle'">
-    Реглан
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
   </button>
-  <button mat-button [routerLink]="'/ranks'">
-    Ряды
-  </button>
-  <button mat-button [routerLink]="'/projects'">
-    Сохраненные проекты
-  </button>
-  <button mat-button [routerLink]="'/set-in'">
-    Простой
-  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="'/circle'">
+      <span>Реглан</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/ranks'">
+      <span>Ряды</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/projects'">
+      <span>Сохраненные проекты</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/set-in'">
+      <span>Простой</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>
