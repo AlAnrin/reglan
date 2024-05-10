@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {DialogOverviewExampleDialog} from "../counting-ranks/save-dialog";
 import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-open-project',
@@ -15,7 +16,7 @@ export class OpenProjectComponent {
   selectedProject = '';
   file = null;
 
-  constructor(private router: Router, public dialog: MatDialog) {
+  constructor(private router: Router, public dialog: MatDialog, private snack: MatSnackBar) {
     this.getProjects();
   }
 
@@ -49,6 +50,7 @@ export class OpenProjectComponent {
 
   save(): void {
     localStorage.setItem(this.selectedProject, JSON.stringify(this.reglan));
+    this.snack.open('Успешно сохранено', undefined, {duration: 2000})
   }
 
   readFile(event: any): void {

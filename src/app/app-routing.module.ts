@@ -8,6 +8,11 @@ const routes: Routes = [
       .then(m => m.CountingCircleModule),
   },
   {
+    path: 'shoulder',
+    loadChildren: () => import('./counting-shoulder-strap/counting-shoulder-strap.module')
+      .then(m => m.CountingShoulderStrapModule),
+  },
+  {
     path: 'ranks',
     loadChildren: () => import('./counting-ranks/counting-ranks.module')
       .then(m => m.CountingRanksModule),

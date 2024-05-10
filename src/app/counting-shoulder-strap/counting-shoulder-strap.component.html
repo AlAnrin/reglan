@@ -1,0 +1,106 @@
+<mat-label class="header">Плотность вязания</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Количество петель в 1 см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.oneWidth">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Количество рядов в 1 см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.oneHeight">
+  </mat-form-field>
+</div>
+
+<mat-label class="header">Расчет набора петель</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Обхват горловины, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.circle">
+  </mat-form-field>
+  <!--  <mat-form-field>-->
+  <!--    <mat-label>Глубина выреза горловины спереди, см</mat-label>-->
+  <!--    <input matInput type="number" [(ngModel)]="countingService.circle">-->
+  <!--  </mat-form-field>-->
+</div>
+
+<mat-label class="header">Расчет глубины реглана</mat-label>
+
+<div class="row">
+  <mat-form-field>
+    <mat-label>Длина плеча, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.shoulderLength">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ширина плеча (погон), см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.shoulderWidth">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Глубина проймы, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.armholeDepth">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Обхват груди, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.bust">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Обхват руки, см</mat-label>
+    <input matInput type="number" [(ngModel)]="countingService.armCircle">
+  </mat-form-field>
+</div>
+
+<div class="header result">
+  <button mat-raised-button color="primary"
+          (click)="countingService.count()">Расчитать</button>
+</div>
+
+<mat-label class="header">Результат расчетов</mat-label>
+
+<div *ngIf="countingService.isCounting">
+  <div class="margin-20">
+    <div class="column">
+      <mat-label><b>Первоначальный набор:</b> {{countingService.countingData.allLoops}} петель</mat-label>
+      <br>
+      <mat-label><b>Перед:</b> {{countingService.countingData.front}} петель</mat-label>
+      <mat-label><b>Спинка:</b> {{countingService.countingData.back}} петель</mat-label>
+      <mat-label><b>Погон:</b> {{countingService.countingData.pogonWidth}} петель</mat-label>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-label><b>Первые прибавки (горизонтальные по плечу):</b></mat-label>
+      <mat-label><b>Длина погона:</b> {{countingService.countingData.pogonLengthRanks}} рядов</mat-label>
+      <mat-label><b>Количество петель прибавок на погонах:</b> {{countingService.countingData.pogonLengthAdding}} петель</mat-label>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-label><b>Вторые прибавки (вертикальные по рукаву):</b></mat-label>
+      <mat-label><b>Длина по рукаву:</b> {{countingService.countingData.armHeight}} рядов</mat-label>
+      <mat-label><b>Добавок на рукав (подрез включен в расчет):</b> {{countingService.countingData.armWidthAdding}} петель</mat-label>
+      <br>
+      <mat-label><b>Подрез:</b> {{countingService.countingData.undercut}} петель</mat-label>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-label><b>Итоговое число петель на момент разделения на рукава и тело</b></mat-label>
+      <small>Необходимо учитывать, что данные значения являются расчетными по введенным см.</small>
+      <small>Здесь не включены подрезы.</small>
+      <br>
+      <mat-label><b>Конечное количество петель всего:</b> {{countingService.countingData.allCountEnd}}</mat-label>
+      <br>
+      <mat-label><b>Петли тела:</b> {{countingService.countingData.countBust}}</mat-label>
+      <mat-label><b>Петли рукава (одного):</b> {{countingService.countingData.countSleeve}}</mat-label>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-label><b>По итогам прибавок</b></mat-label>
+      <mat-label>
+        <b>Петли тела:</b>
+        {{2 * (countingService.countingData.front + 2 * countingService.countingData.pogonLengthAdding + countingService.countingData.undercut)}} петель
+      </mat-label>
+      <mat-label>
+        <b>Что в см:</b>
+        {{(2 * (countingService.countingData.front + 2 * countingService.countingData.pogonLengthAdding + countingService.countingData.undercut)) / countingService.oneWidth}}
+      </mat-label>
+    </div>
+  </div>
+</div>
